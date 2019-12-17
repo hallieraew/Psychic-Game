@@ -18,5 +18,29 @@ var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
 var wins = 0;
 var loss = 0;
 var ties = 0;
-var guesses = 15;
+var guessesLeft = 15;
+var yourGuess = [];
+var letterIndex = Math.floor(Math.random() * letters.length);
+var computerGuess = letters[letterIndex];
+console.log(computerGuess);
 
+document.onkeypress = function(event) {
+
+    document.getElementById('guesses').innerHTML = event.key;
+    var yourGuess = event.key;
+
+    if(yourGuess === computerGuess){
+        wins++;
+    }else{
+        guessesLeft--;
+    }
+
+    if(guessesLeft === 0){
+        loss++
+    }
+
+    document.getElementById('win-text').innerHTML = "Wins: " + wins;
+    document.getElementById('loss').innerHTML = "Losses: " + loss;
+    document.getElementById('guesses-left').innerHTML = "Guesses left: " + guessesLeft;
+    document.getElementById('guesses').innerHTML = "Guesses: " + yourGuess;
+}
